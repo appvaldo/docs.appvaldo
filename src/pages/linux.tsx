@@ -25,7 +25,7 @@ export default function Linux({ data }: PageProps<DataProps>) {
 
 export const query = graphql`
   query {
-    allFile {
+    allFile(filter: { relativePath: { regex: "/linux/" } }) {
       nodes {
         name
       }
