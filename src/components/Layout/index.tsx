@@ -1,8 +1,11 @@
 import { Link } from 'gatsby';
 import React, { ReactNode } from 'react';
-import { createGlobalStyle } from "styled-components";
-import { Container } from './styles';
+import styled, { createGlobalStyle } from "styled-components";
 
+
+export const Container = styled.div`
+  flex: 1;
+`;
 
 const GlobalStyle = createGlobalStyle`
   body {

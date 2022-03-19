@@ -1,7 +1,10 @@
 import React from 'react';
+import styled from "styled-components";
 import { Layout } from '../../components/Layout';
-import { Container } from './styles';
 
+export const Container = styled.div`
+  flex: 1;
+`;
 
 export default function About() {
   return (
