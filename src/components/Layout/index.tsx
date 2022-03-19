@@ -1,6 +1,14 @@
 import { Link } from 'gatsby';
 import React, { ReactNode } from 'react';
+import { createGlobalStyle } from "styled-components";
 import { Container } from './styles';
+
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${props => (props.theme === "purple" ? "purple" : "white")};
+  }
+`
 
 type LayoutProps =  {
     pageTitle: string;
@@ -10,6 +18,7 @@ type LayoutProps =  {
 export function Layout({ pageTitle, children }: LayoutProps) {
   return (
     <Container>
+        <GlobalStyle theme="purple" />
         <title>{pageTitle}</title>
             <nav>
                 <ul>

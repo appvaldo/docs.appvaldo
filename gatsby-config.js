@@ -3,5 +3,5 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://docs.appvaldo.com`,
   },
-  plugins: [],
+  plugins: [`gatsby-plugin-styled-components`],
 }
