@@ -1,11 +1,20 @@
 import { graphql, PageProps } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 import { Layout } from '../components/Layout';
 
 type DataProps = {
-  allFile: {
+  allMdx: {
     nodes: {
-      name: string;
+      frontmatter: {
+        date: string;
+        title: string;
+      };
+      id: string;
+      body: string;
+      parent: {
+        modifiedTime: string;
+      };
     }[];
   };
 };
@@ -14,20 +23,32 @@ export default function Linux({ data }: PageProps<DataProps>) {
   return (
     <Layout pageTitle="Linux">
       <h1>Diretórios</h1>
-      <ul>
-        {data.allFile.nodes.map((node) => (
-          <li key={node.name}>{node.name}</li>
-        ))}
-      </ul>
+      {data.allMdx.nodes.map((node) => (
+        <article key={node.id}>
+          <h2>{node.frontmatter.title}</h2>
+          <p>Posted: {node.frontmatter.date}</p>
+          <MDXRenderer>{node.body}</MDXRenderer>
+        </article>
+      ))}
     </Layout>
   );
 }
 
 export const query = graphql`
   query {
-    allFile(filter: { relativePath: { regex: "/linux/" } }) {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       nodes {
-        name
+        frontmatter {
+          date(formatString: "D MMMM YYYY")
+          title
+        }
+        id
+        body
+        parent {
+          ... on File {
+            modifiedTime(formatString: "MMMM D, YYYY")
+          }
+        }
       }
     }
   }
