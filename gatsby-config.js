@@ -1,4 +1,15 @@
 /** @type {import('gatsby').GatsbyConfig} */
+const path = require("path");
+
+const gatsbyRequiredRules = path.join(
+  process.cwd(),
+  "node_modules",
+  "gatsby",
+  "dist",
+  "utils",
+  "eslint-rules"
+);
+
 module.exports = {
   siteMetadata: {
     title: 'DocsTecno',
@@ -15,13 +26,10 @@ module.exports = {
     {
       resolve: "gatsby-plugin-eslint",
       options: {
-        test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
-        exclude: /(node_modules|.cache|public)/,
+        rulePaths: [gatsbyRequiredRules],
+        extensions: ["js", "jsx", "ts", "tsx"],
+        exclude: ["node_modules", "bower_components", ".cache", "public"],
         stages: ["develop"],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
       },
     },
     `gatsby-plugin-styled-components`,

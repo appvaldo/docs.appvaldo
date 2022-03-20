@@ -2,11 +2,11 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { ReactNode } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-export const Container = styled.div`
+const Container = styled.div`
   flex: 1;
 `;
 
-export const ListLink = styled.ul`
+const ListLink = styled.ul`
   list-style: none;
   li {
     display: inline;
