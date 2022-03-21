@@ -1,14 +1,7 @@
 /** @type {import('gatsby').GatsbyConfig} */
-const path = require("path");
+const path = require('path');
 
-const gatsbyRequiredRules = path.join(
-  process.cwd(),
-  "node_modules",
-  "gatsby",
-  "dist",
-  "utils",
-  "eslint-rules"
-);
+const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules');
 
 module.exports = {
   siteMetadata: {
@@ -18,82 +11,38 @@ module.exports = {
     social: [
       {
         name: 'github',
-        url: 'https://github.com/appvaldo/docs.appvaldo'
-      }
-    ]
+        url: 'https://github.com/appvaldo/docs.appvaldo',
+      },
+    ],
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-eslint",
+      resolve: 'gatsby-plugin-eslint',
       options: {
         rulePaths: [gatsbyRequiredRules],
-        extensions: ["js", "jsx", "ts", "tsx"],
-        exclude: ["node_modules", "bower_components", ".cache", "public"],
-        stages: ["develop"],
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        exclude: ['node_modules', 'bower_components', '.cache', 'public'],
+        stages: ['develop'],
       },
     },
     `gatsby-plugin-styled-components`,
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
         name: `posts`,
         path: `${__dirname}/posts`,
-      }
-    },
-    "gatsby-plugin-mdx",
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-              linkImagesToOriginal: true,
-            },
-          },
-        ],
       },
     },
+    'gatsby-plugin-mdx',
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-              languageExtensions: [
-                {
-                  language: "superscript",
-                  extend: "javascript",
-                  definition: {
-                    superscript_types: /(SuperType)/,
-                  },
-                  insertBefore: {
-                    function: {
-                      superscript_keywords: /(superif|superelse)/,
-                    },
-                  },
-                },
-              ],
-              prompt: {
-                user: "root",
-                host: "localhost",
-                global: false,
-              },
-              escapeEntities: {},
-            },
-          },
-        ],
+        plugins: [`gatsby-remark-prismjs`],
       },
     },
   ],
+
   // pathPrefix: '/blog'
-}
+};

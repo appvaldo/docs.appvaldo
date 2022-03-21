@@ -67,7 +67,7 @@ export function Layout({ pageTitle, children }: LayoutProps) {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/linux">Linux</Link>
+            <Link to="/posts">Posts</Link>
           </li>
         </ListLink>
       </nav>
